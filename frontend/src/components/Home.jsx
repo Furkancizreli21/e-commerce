@@ -4,7 +4,15 @@ import logo from "../images/home/logo.webp";
 import { CiSearch, CiHeart, CiUser, CiShoppingBasket } from "react-icons/ci";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Sidebar } from "primereact/sidebar";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
+import ch from "../images/ProductImages/Product1/ch.webp";
+import p from "../images/ProductImages/Product2/p.webp";
+import af from "../images/ProductImages/Product3/af.webp";
+import cuart from "../images/ProductImages/Product4/cuart.webp";
+import sav from "../images/ProductImages/Product5/sav.webp";
+const images = [ch, p, af, cuart, sav];
 function Home() {
   const [visible, setVisible] = useState(false);
 
@@ -19,57 +27,89 @@ function Home() {
     "Underwear & Lingerie",
     "Bags & Wallets",
   ];
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 1600 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 1600, min: 1024 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 768 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 768, min: 0 },
+      items: 1,
+    },
+  };
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
-      {/* Arka plan videosu */}
-      <video className="absolute h-screen w-full object-cover" autoPlay muted loop playsInline>
-        <source src={video} type="video/mp4" />
-      </video>
+    <>
+      <div className="relative h-screen w-full overflow-hidden">
+        {/* Arka plan videosu */}
+        <video className="absolute h-screen w-full object-cover" autoPlay muted loop playsInline>
+          <source src={video} type="video/mp4" />
+        </video>
+        {/* Navbar */}
+        <nav className="absolute top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-10">
+          {/* Hamburger */}
+          <RxHamburgerMenu
+            onClick={() => setVisible(true)}
+            fontSize={35}
+            className="text-white cursor-pointer hover:opacity-80 transition"
+          />
 
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-10">
-        {/* Hamburger */}
-        <RxHamburgerMenu
-          onClick={() => setVisible(true)}
-          fontSize={35}
-          className="text-white cursor-pointer hover:opacity-80 transition"
-        />
+          {/* Logo */}
+          <a href="">
+            <img src={logo} alt="Logo" className="h-12 object-contain hover:opacity-90" />
+          </a>
 
-        {/* Logo */}
-        <a href="">
-          <img src={logo} alt="Logo" className="h-12 object-contain hover:opacity-90" />
-        </a>
-
-        {/* İkonlar */}
-        <ul className="flex items-center gap-3">
-          <li>
-            <CiSearch size={25} className="text-white hover:text-cyan-200 cursor-pointer transition" />
-          </li>
-          <li>
-            <CiHeart size={25} className="text-white hover:text-cyan-200 cursor-pointer transition" />
-          </li>
-          <li>
-            <CiUser size={25} className="text-white hover:text-cyan-200 cursor-pointer transition" />
-          </li>
-          <li>
-            <CiShoppingBasket size={25} className="text-white hover:text-cyan-200 cursor-pointer transition" />
-          </li>
-        </ul>
-      </nav>
-
-      {/* PrimeReact Sidebar */}
-      <Sidebar visible={visible} onHide={() => setVisible(false)} position="left" className="bg-white text-black w-1/4">
-        <h2 className="text-lg font-semibold mb-4 text-center">Categories</h2>
-        <ul>
-          {menuItems.map((item, index) => (
-            <li key={index} className="py-2 px-5 border-b border-gray-200 cursor-pointer hover:bg-gray-100">
-              <a href="">{item}</a>
+          {/* İkonlar */}
+          <ul className="flex items-center gap-3">
+            <li>
+              <CiUser size={25} className="text-white hover:text-cyan-200 cursor-pointer transition" />
             </li>
-          ))}
-        </ul>
-      </Sidebar>
-    </div>
+            <li>
+              <CiSearch size={25} className="text-white hover:text-cyan-200 cursor-pointer transition" />
+            </li>
+            <li>
+              <CiHeart size={25} className="text-white hover:text-cyan-200 cursor-pointer transition" />
+            </li>
+
+            <li>
+              <CiShoppingBasket size={25} className="text-white hover:text-cyan-200 cursor-pointer transition" />
+            </li>
+          </ul>
+        </nav>
+        {/* PrimeReact Sidebar */}
+        <Sidebar visible={visible} onHide={() => setVisible(false)} position="left" className="bg-white text-black w-1/4">
+          <h2 className="text-lg font-semibold mb-4 text-center">Categories</h2>
+          <ul>
+            {menuItems.map((item, index) => (
+              <li key={index} className="py-2 px-5 border-b border-gray-200 cursor-pointer hover:bg-gray-100">
+                <a href="">{item}</a>
+              </li>
+            ))}
+          </ul>
+        </Sidebar>
+      </div>
+
+      <div className="p-10 bg-white text-black">
+        <h2 className="text-xl font-bold mb-4 text-center">BESTSELLERS</h2>
+        <Carousel responsive={responsive} infinite={true} autoPlay={true}>
+          {images.map((image, i) => {
+            return (
+              <div className="p-1 cursor-pointer">
+                <img src={image} className="w-full h-150 object-cover " key={i} />
+              </div>
+            );
+          })}
+        </Carousel>
+      </div>
+    </>
   );
 }
 
