@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "MyFont";
+  src: url("./images/fonts/font.otf");
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "MyFont", sans-serif;
+}
