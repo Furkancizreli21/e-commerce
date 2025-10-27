@@ -6,13 +6,9 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { Sidebar } from "primereact/sidebar";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
-import ch from "../images/ProductImages/Product1/ch.webp";
-import p from "../images/ProductImages/Product2/p.webp";
-import af from "../images/ProductImages/Product3/af.webp";
-import cuart from "../images/ProductImages/Product4/cuart.webp";
-import sav from "../images/ProductImages/Product5/sav.webp";
-const images = [ch, p, af, cuart, sav];
+import { productDetails } from "../../dummy/dummy-data";
+import woman from "../images/ProductImages/HomeImages/woman.webp";
+import man from "../images/ProductImages/HomeImages/man.webp";
 function Home() {
   const [visible, setVisible] = useState(false);
 
@@ -27,6 +23,7 @@ function Home() {
     "Underwear & Lingerie",
     "Bags & Wallets",
   ];
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1600 },
@@ -67,7 +64,7 @@ function Home() {
             <img src={logo} alt="Logo" className="h-12 object-contain hover:opacity-90" />
           </a>
 
-          {/* İkonlar */}
+          {/* İcons */}
           <ul className="flex items-center gap-3">
             <li>
               <CiUser size={25} className="text-white hover:text-cyan-200 cursor-pointer transition" />
@@ -96,18 +93,40 @@ function Home() {
           </ul>
         </Sidebar>
       </div>
-
+      {/*Products*/}
       <div className="p-10 bg-white text-black">
         <h2 className="text-xl font-bold mb-4 text-center">BESTSELLERS</h2>
         <Carousel responsive={responsive} infinite={true} autoPlay={true}>
-          {images.map((image, i) => {
+          {productDetails.map((product, index) => {
             return (
-              <div className="p-1 cursor-pointer">
-                <img src={image} className="w-full h-150 object-cover " key={i} />
+              <div key={index}>
+                <img src={product.image} className="h-130 object-contain cursor-pointer" />
+                <h3 className="text-md font-medium">{product.name}</h3>
+                <p className=" text-md mt-2">{product.price.toLocaleString("tr-TR")}$</p>
+                <a href="" className="inline-block border-b hover:scale-105 transition-transform duration-300">
+                  Add to Cart
+                </a>
               </div>
             );
           })}
         </Carousel>
+      </div>
+      <div className="flex w-full  gap-3">
+        {/* Erkek resmi */}
+        <div className="relative w-[calc(50%-6px)] h-full">
+          <img src={man} className="w-full h-full object-cover" alt="Man" />
+          <button className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black/60 text-white px-6 py-2 rounded-full hover:bg-black transition cursor-pointer">
+            Man
+          </button>
+        </div>
+
+        {/* Kadın resmi */}
+        <div className="relative w-[calc(50%-6px)] h-full">
+          <img src={woman} className="w-full h-full object-cover" alt="Woman" />
+          <button className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black/60 text-white px-6 py-2 rounded-full hover:bg-black transition cursor-pointer">
+            Woman
+          </button>
+        </div>
       </div>
     </>
   );
