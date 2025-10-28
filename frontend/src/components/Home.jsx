@@ -9,6 +9,9 @@ import "react-multi-carousel/lib/styles.css";
 import { productDetails } from "../../dummy/dummy-data";
 import woman from "../images/ProductImages/HomeImages/woman.webp";
 import man from "../images/ProductImages/HomeImages/man.webp";
+import fashion from "../images/ProductImages/HomeImages/fashion.webp";
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+
 function Home() {
   const [visible, setVisible] = useState(false);
 
@@ -112,7 +115,7 @@ function Home() {
         </Carousel>
       </div>
       <div className="flex w-full  gap-3">
-        {/* Erkek resmi */}
+        {/* Man */}
         <div className="relative w-[calc(50%-6px)] h-full">
           <img src={man} className="w-full h-full object-cover" alt="Man" />
           <button className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black/60 text-white px-6 py-2 rounded-full hover:bg-black transition cursor-pointer">
@@ -120,7 +123,7 @@ function Home() {
           </button>
         </div>
 
-        {/* Kadın resmi */}
+        {/* Woman */}
         <div className="relative w-[calc(50%-6px)] h-full">
           <img src={woman} className="w-full h-full object-cover" alt="Woman" />
           <button className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black/60 text-white px-6 py-2 rounded-full hover:bg-black transition cursor-pointer">
@@ -128,6 +131,125 @@ function Home() {
           </button>
         </div>
       </div>
+      {/* About / Brand Story */}
+      <div className="bg-gray-50 py-16 px-6 text-center">
+        <h2 className="text-3xl font-bold mb-4">Our Story</h2>
+        <p className="max-w-3xl mx-auto text-gray-600 leading-relaxed">
+          We started with a simple mission — to bring comfort and style together. Each product is crafted with care, designed to
+          last, and made for people who value quality.
+        </p>
+        <button className="mt-6 bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition cursor-pointer">
+          Learn More
+        </button>
+      </div>
+      {/* Lookbook */}
+      <div className="relative w-full h-[400px] my-12">
+        <img src={fashion} alt="Lookbook" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center text-white">
+          <h2 className="text-3xl font-bold mb-4">Style Lookbook 2025</h2>
+          <p className="max-w-lg mb-6">
+            Discover the latest trends and get inspired by our fashion lookbook — curated for every season.
+          </p>
+          <button className="bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition cursor-pointer">
+            Explore the Lookbook
+          </button>
+        </div>
+      </div>
+      {/*Footer */}
+
+      <footer className="bg-black text-white py-12 px-8 mt-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          <div>
+            <h2 className="text-2xl font-bold mb-4 tracking-wide">Lumière</h2>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Redefining fashion for the modern world. Quality, comfort, and style — all in one place.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-3">About</h3>
+            <ul className="space-y-2 text-gray-400 text-sm">
+              <li>
+                <a href="#" className="hover:text-white transition">
+                  Our Story
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition">
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition">
+                  Sustainability
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Shop</h3>
+            <ul className="space-y-2 text-gray-400 text-sm">
+              <li>
+                <a href="#" className="hover:text-white transition">
+                  Men
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition">
+                  Women
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition">
+                  Kids
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition">
+                  Accessories
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Contact</h3>
+            <ul className="space-y-2 text-gray-400 text-sm">
+              <li>
+                Email:{" "}
+                <a href="mailto:info@lumiere.com" className="hover:text-white">
+                  info@lumiere.com
+                </a>
+              </li>
+              <li>
+                Phone:{" "}
+                <a href="tel:+905134146411" className="hover:text-white">
+                  +90 513 414 64 11
+                </a>
+              </li>
+              <li>Address: Istanbul, Türkiye</li>
+            </ul>
+
+            <div className="flex gap-4 mt-4 text-gray-400">
+              <FaFacebookF className="hover:text-white cursor-pointer" />
+              <FaInstagram className="hover:text-white cursor-pointer" />
+              <FaTwitter className="hover:text-white cursor-pointer" />
+              <FaYoutube className="hover:text-white cursor-pointer" />
+            </div>
+          </div>
+        </div>
+
+        {/* Alt bilgi */}
+        <div className="border-t border-gray-700 mt-10 pt-6 text-center text-gray-500 text-sm">
+          <p>© {new Date().getFullYear()} Lumière. All rights reserved.</p>
+        </div>
+      </footer>
     </>
   );
 }
