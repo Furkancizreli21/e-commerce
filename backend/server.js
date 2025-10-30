@@ -1,28 +1,29 @@
 const express = require("express");
-const router = express.Router();
-require("dotenv").config();
-const cors = require("cors");
-const app = express();
 const mongoose = require("mongoose");
+const cors = require("cors");
+require("dotenv").config();
+
+const app = express();
+const MONGO_URI = process.env.MONGO_URI;
+// Middleware
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:5173" }));
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+// Routes
+const adminRoutes = require("./routes/admin");
+app.use("/api/admin", adminRoutes);
 
-router.get("/admin", (req, res) => {
-  res.render();
-})(async () => {
+// MongoDB bağlantısı
+(async () => {
   try {
-    await mongoose.connect("mongodb+srv://furkancizreli:furki338.@cluster0.vore5l2.mongodb.net/e-commerceDB");
-    console.log("Database connected");
+    await mongoose.connect(MONGO_URI);
+    console.log("Database connected ✅");
   } catch (err) {
-    console.log("Database error");
+    console.error("Database error ❌", err);
   }
 })();
 
-app.listen(3000, () => {
-  console.log("Server running");
+// Server başlat
+app.listen(5000, () => {
+  console.log("Server running on port 5000 🚀");
 });
