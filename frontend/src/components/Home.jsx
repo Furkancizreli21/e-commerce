@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import video from "../images/home/home.mp4";
 import logo from "../images/home/logo.webp";
 import { CiSearch, CiHeart, CiUser, CiShoppingBasket } from "react-icons/ci";
@@ -14,7 +14,13 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 function Home() {
   const [visible, setVisible] = useState(false);
-
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    fetch("http://localhost:3000/") // Backend URL
+      .then((res) => res.text())
+      .then((data) => setMessage(data));
+  }, []);
+  
   const menuItems = [
     "Men's Clothing",
     "Women's Clothing",
@@ -250,6 +256,7 @@ function Home() {
           <p>© {new Date().getFullYear()} Lumière. All rights reserved.</p>
         </div>
       </footer>
+      <div>{message}</div>
     </>
   );
 }
