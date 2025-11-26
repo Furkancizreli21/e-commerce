@@ -7,6 +7,12 @@ const nextConfig = {
         hostname: "www.manieredevoir.com",
       },
     ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "www.mwhwear.com",
+      },
+    ],
   },
 };
 

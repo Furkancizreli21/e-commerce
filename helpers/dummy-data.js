@@ -94,3 +94,64 @@ export const manProducts = [
     category: "shirt",
   },
 ];
+
+export const womanProducts = [
+  {
+    id: "1",
+    name: "Classic Cotton T-Shirt",
+    price: 29.99,
+    image: "https://www.mwhwear.com/cdn/shop/files/move-trousers-blue-2.jpg?v=1761300728&width=2000",
+    category: "tshirt",
+  },
+  {
+    id: "2",
+    name: "Oversized Streetwear Tee",
+    price: 39.99,
+    image: "https://www.mwhwear.com/cdn/shop/files/northernstart-black-CH5A5730.jpg?v=1751903740&width=2000",
+    category: "tshirt",
+  },
+  {
+    id: "3",
+    name: "Slim Fit White Shirt",
+    price: 59.99,
+    image: "https://www.mwhwear.com/cdn/shop/files/work-trousers-navy-6.jpg?v=1723895684&width=2000",
+    category: "shirt",
+  },
+  {
+    id: "4",
+    name: "Denim Casual Shirt",
+    price: 54.99,
+    image:
+      "https://www.mwhwear.com/cdn/shop/files/1080x1620-HARMONYJACKETBLACKSTRL36MICHELLE_WORKTROUSERSBLACK-13437.jpg?v=1739802523&width=2000",
+    category: "sweatshirt",
+  },
+  {
+    id: "5",
+    name: "Denim Casual Shirt",
+    price: 54.99,
+    image:
+      "https://www.mwhwear.com/cdn/shop/files/joanna-swica-rebel-slim-trousers_1.jpg?v=1736353879&width=2000https://www.mwhwear.com/cdn/shop/files/joanna-swica-rebel-slim-trousers_1.jpg?v=1736353879&width=2000",
+    category: "shirt",
+  },
+  {
+    id: "6",
+    name: "Denim Casual Shirt",
+    price: 54.99,
+    image: "https://www.mwhwear.com/cdn/shop/files/northernstart-trousers-green-CH5A5230.jpg?v=1722418700&width=2000",
+    category: "shirt",
+  },
+  {
+    id: "7",
+    name: "Denim Casual Shirt",
+    price: 54.99,
+    image: "https://www.mwhwear.com/cdn/shop/files/harmony-trousers-highwaist-rebel-blue-2.jpg?v=1742238369&width=2000",
+    category: "shirt",
+  },
+  {
+    id: "8",
+    name: "Denim Casual Shirt",
+    price: 54.99,
+    image: "https://www.mwhwear.com/cdn/shop/files/harmony-trousers-highwaist-offwhite-1.jpg?v=1721664455&width=2000",
+    category: "shirt",
+  },
+];
