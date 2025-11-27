@@ -2,7 +2,7 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-12 px-8 mt-10">
+    <footer className="bg-black text-white py-12 px-8 ">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         <div>
           <h2 className="text-2xl font-bold mb-4 tracking-wide">Lumière</h2>

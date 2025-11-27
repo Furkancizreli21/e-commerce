@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Lookbook() {
   return (
@@ -9,9 +10,9 @@ export default function Lookbook() {
         <p className="max-w-lg mb-6">
           Discover the latest trends and get inspired by our fashion lookbook — curated for every season.
         </p>
-        <button className="bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition cursor-pointer">
+        <Link href="/lookbook" className="bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition cursor-pointer">
           Explore the Lookbook
-        </button>
+        </Link>
       </div>
     </div>
   );

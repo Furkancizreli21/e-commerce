@@ -13,7 +13,6 @@ export default function Home() {
       <GenderSection />
       <BrandStory />
       <Lookbook />
-      <Footer />
     </>
   );
 }
