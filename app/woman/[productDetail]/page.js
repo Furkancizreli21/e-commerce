@@ -1,99 +1,150 @@
 import { womanProducts } from "@/helpers/dummy-data";
-import { Button, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import Image from "next/image";
+import { ChevronRight, Heart, Share2, Truck, ShieldCheck, RefreshCw } from "lucide-react";
+import Link from "next/link";
 
-export default async function womanDetailPage({ params }) {
+export default async function WomanDetailPage({ params }) {
   const { productDetail } = await params;
   const product = womanProducts.find((product) => product.id == productDetail);
 
   return (
-    <div className="pt-24 px-4">
-      <div className="mx-auto max-w-6xl grid gap-12 lg:grid-cols-[1.1fr_1fr]">
-        <div className="flex flex-col gap-4">
-          <div className="relative w-full aspect-3/4 bg-[#f7f7f7] rounded-lg overflow-hidden">
-            <Image src={product.image} alt={product.name} fill className="object-cover" />
-          </div>
+    <div className="bg-white min-h-screen pb-20 pt-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <nav className="flex items-center text-sm text-gray-500 mb-8 overflow-hidden">
+          <span className="hover:text-gray-900 cursor-pointer transition">Home</span>
+          <ChevronRight className="h-4 w-4 mx-2" />
+          <Link href="/woman" className="hover:text-gray-900 cursor-pointer transition">
+            Woman
+          </Link>
+          <ChevronRight className="h-4 w-4 mx-2" />
+          <span className="hover:text-gray-900 cursor-pointer transition">Clothing</span>
+          <ChevronRight className="h-4 w-4 mx-2" />
+          <span className="font-medium text-gray-900 truncate">{product.name}</span>
+        </nav>
 
-          <div className="flex gap-3">
-            {[product.image, product.image, product.image].map((img, idx) => (
-              <button
-                key={idx}
-                className="relative h-20 w-16 rounded-md overflow-hidden border border-gray-300 hover:border-gray-500"
-              >
-                <Image src={img} alt="thumbnail" fill className="object-cover" />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-6">
-          <div>
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">MANIER E-COMMERCE</p>
-
-            <h1 className="mt-1 text-3xl font-bold text-gray-900">{product.name}</h1>
-
-            <div className="mt-3 flex items-center gap-2 text-sm text-gray-600">
-              <span className="font-semibold text-orange-500">4.8</span>
-              <Rating name="product-rating" value={4.5} precision={0.5} readOnly size="small" />
-              <span className="text-xs text-gray-500">• 41 Reviews</span>
-              <span className="text-xs text-gray-400">• 4 Q&amp;A</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 rounded-md border border-orange-200 bg-orange-50 px-4 py-2 text-xs">
-            <span className="text-lg">👀</span>
-            <span>
-              <span className="font-semibold">Hot product!</span> Viewed{" "}
-              <span className="font-semibold text-orange-600">2.7K</span> times in the last 24 hours.
-            </span>
-          </div>
-
-          <div>
-            <p className="text-3xl font-bold text-orange-600">€{product.price}</p>
-            <p className="mt-2 inline-flex items-center rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs text-orange-600">
-              3 installments available
-            </p>
-          </div>
-
-          <div className="border-t border-gray-100 pt-4">
-            <p className="mb-2 text-sm font-medium text-gray-900">
-              Color: <span className="font-normal">Black</span>
-            </p>
-            <div className="flex gap-2">
-              {[product.image, product.image].map((img, idx) => (
+        <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+          <div className="product-gallery flex flex-col-reverse lg:flex-row gap-4">
+            <div className="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-hidden pb-2 lg:pb-0 w-full lg:w-24 shrink-0 no-scrollbar">
+              {[product.image, product.image, product.image, product.image].map((img, idx) => (
                 <button
                   key={idx}
-                  className={`relative h-20 w-16 rounded-md overflow-hidden border ${
-                    idx === 0 ? "border-orange-500" : "border-gray-300 hover:border-gray-500"
+                  className={`relative w-20 h-24 lg:w-full lg:h-32 shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
+                    idx === 0 ? "border-black ring-1 ring-black/10" : "border-transparent hover:border-gray-200"
                   }`}
                 >
-                  <Image src={img} alt="color option" fill className="object-cover" />
+                  <Image src={img} alt="thumbnail" fill className="object-cover" />
                 </button>
               ))}
             </div>
+
+            <div className="relative w-full aspect-3/4 lg:aspect-4/5 bg-gray-100 rounded-xl overflow-hidden shadow-sm group">
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                priority
+              />
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">
+                New Season
+              </div>
+            </div>
           </div>
 
-          <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs text-emerald-900">
-            <p className="font-semibold">
-              If you order within the next 7 hours, your package ships <span className="underline">tomorrow!</span>
-            </p>
-            <p className="mt-2 text-[11px]">
-              Estimated delivery: <b>Nov 28</b>
-            </p>
-          </div>
+          <div className="mt-10 lg:mt-0 lg:sticky lg:top-24 h-fit">
+            <div className="mb-6 border-b border-gray-100 pb-6">
+              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-2">{product.name}</h1>
 
-          <div className="mt-2 flex flex-wrap items-center gap-3">
-            <Button variant="outlined" color="warning" className="flex-1 py-3 text-base border-2">
-              Buy Now
-            </Button>
+              <div className="flex items-center justify-between mt-4">
+                <div className="flex items-end gap-3">
+                  <p className="text-3xl font-medium text-gray-900">€{product.price}</p>
+                  <span className="mb-1 text-sm text-gray-500 line-through">€{(product.price * 1.2).toFixed(2)}</span>
+                </div>
 
-            <Button variant="contained" color="warning" className="flex-1 py-3 text-base shadow-none">
-              Add to Cart
-            </Button>
+                <div className="flex items-center gap-1">
+                  <Rating name="read-only" value={4.5} precision={0.5} readOnly size="small" />
+                  <span className="text-sm text-gray-500 ml-1 underline cursor-pointer hover:text-gray-900">42 Reviews</span>
+                </div>
+              </div>
+            </div>
 
-            <button className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 text-gray-500 hover:bg-gray-50">
-              ♥
-            </button>
+            <div className="mb-6">
+              <h3 className="text-sm font-medium text-gray-900 mb-3">
+                Color: <span className="text-gray-500 font-normal">Black</span>
+              </h3>
+              <div className="flex gap-3 ">
+                <button className="w-10 h-10 rounded-full bg-black border-2 border-white ring-2 ring-gray-300 ring-offset-2 transition-all cursor-pointer"></button>
+                <button className="w-10 h-10 rounded-full bg-blue-900 border-2 border-white ring-1 ring-gray-200 transition-all hover:scale-110 cursor-pointer"></button>
+                <button className="w-10 h-10 rounded-full bg-[#f5f5dc] border-2 border-white ring-1 ring-gray-200 transition-all hover:scale-110 cursor-pointer"></button>
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-medium text-gray-900">Select Size</h3>
+                <button className="text-xs font-medium text-indigo-600 hover:text-indigo-500 underline">Size Guide</button>
+              </div>
+
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+                {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
+                  <button
+                    key={size}
+                    className={`flex items-center justify-center py-2 text-sm font-medium uppercase border rounded-md transition-all cursor-pointer ${
+                      size === "M"
+                        ? "border-black bg-black text-white shadow-md"
+                        : "border-gray-200 text-gray-900 hover:border-gray-900 bg-white hover:bg-gray-50"
+                    }`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <button className="flex-1 bg-black border border-transparent text-white py-2 px-4 rounded-full text-base font-semibold hover:bg-gray-800 transition-all active:scale-[0.98] shadow-lg shadow-gray-200 cursor-pointer">
+                Add to Cart
+              </button>
+              <button className="group flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-red-500 transition-colors  cursor-pointer">
+                <Heart className="w-6 h-6 group-hover:fill-current transition-all " />
+              </button>
+              <button className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors cursor-pointer">
+                <Share2 className="w-5 h-5 " />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 gap-y-4 pt-8 border-t border-gray-100">
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-gray-50 rounded-lg">
+                  <Truck className="w-5 h-5 text-gray-600" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-900">Free Shipping</p>
+                  <p className="text-xs text-gray-500">Free standard shipping on orders over €100.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-gray-50 rounded-lg">
+                  <RefreshCw className="w-5 h-5 text-gray-600" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-900">Easy Returns</p>
+                  <p className="text-xs text-gray-500">Return within 30 days of purchase.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-gray-50 rounded-lg">
+                  <ShieldCheck className="w-5 h-5 text-gray-600" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-900">Secure Checkout</p>
+                  <p className="text-xs text-gray-500">SSL Encrypted seamless transaction.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
